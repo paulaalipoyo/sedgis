@@ -11,7 +11,7 @@ $conn = $objDb->connect();
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method){
     case "GET":
-        $sql = "SELECT * FROM YEAR ORDER BY year_name DESC;";
+        $sql = "SELECT * FROM year ORDER BY year_name DESC;";
         $path = explode('/', $_SERVER['REQUEST_URI']);
         if(isset($path[3]) && is_numeric($path[3])) {
             $sql .= " WHERE id = :id ";
