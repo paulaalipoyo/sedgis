@@ -15,7 +15,6 @@
 .env.development.local
 .env.test.local
 .env.production.local
-api\DbConnect.php
 .env.local
 .env.production
 npm-debug.log*
@@ -25,3 +24,4 @@ yarn-error.log*
 .eslintcache
 
 package-lock.json
+api/DbConnect.php
