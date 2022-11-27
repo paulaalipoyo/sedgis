@@ -15,6 +15,7 @@ import VisualGrdpIndustry from 'views/pages/data_visualization/per_industry';
 import VisualInternalRevenue from 'views/pages/data_visualization/internal_revenue';
 import VisualIncomeStatement from 'views/pages/data_visualization/income_statement';
 import ForeignTrade from 'views/pages/tables/foreign_trade';
+import Employment from 'views/pages/tables/employment';
 
 const routes = [
     {
@@ -142,6 +143,13 @@ const routes = [
                 name: 'Forieign Trade',
                 miniName: 'FT',
                 component: ForeignTrade,
+                layout: '/admin'
+            },
+            {
+                path: '/employment',
+                name: 'Employment',
+                miniName: 'EMP',
+                component: Employment,
                 layout: '/admin'
             }
         ]
