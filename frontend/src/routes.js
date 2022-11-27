@@ -18,6 +18,10 @@ import ForeignTrade from 'views/pages/tables/foreign_trade';
 import Employment from 'views/pages/tables/employment';
 import Production from 'views/pages/tables/production'
 import Tourism from 'views/pages/tables/tourism';
+import VisualForeignTrade from 'views/pages/data_visualization/foreign_trade';
+import VisualEmployment from 'views/pages/data_visualization/employment';
+import VisualProduction from 'views/pages/data_visualization/production';
+import VisualTourism from 'views/pages/data_visualization/tourism';
 
 const routes = [
     {
@@ -50,37 +54,65 @@ const routes = [
             },
             {
                 path: '/visual-landarea',
-                name: 'Land Area and Total Population',
+                name: 'Land Area Population',
                 miniName: 'LATP',
                 component: VisualLandArea,
                 layout: '/admin'
             },
             {
                 path: '/visual-gdrp-product',
-                name: 'Per Capita Gross Regional Domestic by Product',
-                miniName: 'GDPP',
+                name: 'GRPD per Capita',
+                miniName: 'CAP',
                 component: VisualPerCapita,
                 layout: '/admin'
             },
             {
                 path: '/visual-grdp-industry',
-                name: 'Gross Regional Domestic Product by Industry',
-                miniName: 'GDPI',
+                name: 'GRPD per Industry',
+                miniName: 'IND',
                 component: VisualGrdpIndustry,
                 layout: '/admin'
             },
             {
                 path: '/visual-internal-revenue',
-                name: 'Internal Revenue Collections by Province City',
+                name: 'Internal Revenue',
                 miniName: 'IRC',
                 component: VisualInternalRevenue,
                 layout: '/admin'
             },
             {
                 path: '/visual-income-statement',
-                name: 'Statement of Income of Municipal Goverments by Province/City',
+                name: 'Statement of Income',
                 miniName: 'SI',
                 component: VisualIncomeStatement,
+                layout: '/admin'
+            },
+            {
+                path: '/visual-foreign-trade',
+                name: 'Foreign Trade',
+                miniName: 'FT',
+                component: VisualForeignTrade,
+                layout: '/admin'
+            },
+            {
+                path: '/visual-employment',
+                name: 'Employment',
+                miniName: 'EMP',
+                component: VisualEmployment,
+                layout: '/admin'
+            },
+            {
+                path: '/visual-production',
+                name: 'Production',
+                miniName: 'PRO',
+                component: VisualProduction,
+                layout: '/admin'
+            },
+            {
+                path: '/visual-tourism',
+                name: 'Tourism',
+                miniName: 'TOUR',
+                component: VisualTourism,
                 layout: '/admin'
             }
         ]
@@ -107,42 +139,42 @@ const routes = [
             },
             {
                 path: '/landarea',
-                name: 'Land Area and Total Population',
+                name: 'Land Area Population',
                 miniName: 'LATP',
                 component: LandAreaPopulation,
                 layout: '/admin'
             },
             {
                 path: '/gdrp-product',
-                name: 'Per Capita Gross Regional Domestic by Product',
-                miniName: 'Product',
+                name: 'GRPD per Capita',
+                miniName: 'CAP',
                 component: GrdpCapita,
                 layout: '/admin'
             },
             {
                 path: '/gdrp-industry',
-                name: 'Gross Regional Domestic Product by Industry',
-                miniName: 'Industry',
+                name: 'GRPD per Industry',
+                miniName: 'IND',
                 component: GrdpIndustry,
                 layout: '/admin'
             },
             {
                 path: '/internal-revenue',
-                name: 'Internal Revenue Collections by Province City',
+                name: 'Internal Revenue',
                 miniName: 'IRC',
                 component: InternalRevenue,
                 layout: '/admin'
             },
             {
                 path: '/income-statement',
-                name: 'Statement of Income of Municipal Goverments by Province / City',
+                name: 'Income Statement',
                 miniName: 'SI',
                 component: IncomeStatement,
                 layout: '/admin'
             },
             {
                 path: '/foreign-trade',
-                name: 'Forieign Trade',
+                name: 'Foreign Trade',
                 miniName: 'FT',
                 component: ForeignTrade,
                 layout: '/admin'
@@ -164,7 +196,7 @@ const routes = [
             {
                 path: '/tourism',
                 name: 'Tourism',
-                miniName: 'PRO',
+                miniName: 'TOUR',
                 component: Tourism,
                 layout: '/admin'
             }

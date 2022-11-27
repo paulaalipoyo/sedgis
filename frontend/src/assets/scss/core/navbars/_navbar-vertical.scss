@@ -110,7 +110,7 @@
     .navbar-nav .nav-link {
         display: flex;
         align-items: center;
-        white-space: pre-wrap;
+        white-space: no-wrap;
     }
 
     .navbar-nav .nav-link[data-toggle="collapse"] {
