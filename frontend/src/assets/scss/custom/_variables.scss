@@ -25,7 +25,7 @@ $enable-shadows:            true !default;
 // Color system
 
 $white:    #fff !default;
-$gray-100: #f6f9fc !default;
+$gray-100: #edeff1 !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
 $gray-400: #ced4da !default;
@@ -749,7 +749,7 @@ $navbar-light-active-bg:                   darken($gray-100, 5%) !default;
 $navbar-light-border-color:                rgba($black, .05) !default;
 $navbar-light-color:                       rgba($black, .6) !default;
 $navbar-light-hover-color:                 rgba($black, .7) !default;
-$navbar-light-active-color:                rgba($black, .9) !default;
+$navbar-light-active-color:                rgba($blue, .8) !default;
 $navbar-light-disabled-color:              rgba($black, .3) !default;
 $navbar-light-toggler-border-color:        transparent !default;
 
