@@ -1,7 +1,6 @@
 import Login from 'views/pages/auth/Login.js';
 import PovertyStats from 'views/pages/tables/poverty_statistics/index';
 import CrimeSolution from 'views/pages/tables/crime_solutions_efficiency/index';
-import SocioEcoIndicators from 'views/pages/tables/socio_economic_indicators/index';
 import Geomap from 'views/pages/maps/Geomap.js';
 import LandAreaPopulation from 'views/pages/tables/land_area_population/index';
 import GrdpCapita from 'views/pages/tables/gdrp_product/index';
@@ -10,12 +9,12 @@ import InternalRevenue from 'views/pages/tables/internel_revenue/index';
 import IncomeStatement from 'views/pages/tables/statement_of_income/index';
 import VisualPovertyStats from 'views/pages/data_visualization/poverty_statistics';
 import VisualCrimeSolution from 'views/pages/data_visualization/crime_solution_efficiency';
-import VisualSocioEcoIndicators from 'views/pages/data_visualization/socio_economic_indicators';
 import VisualLandArea from 'views/pages/data_visualization/land_area';
 import VisualPerCapita from 'views/pages/data_visualization/per_capita_gross';
 import VisualGrdpIndustry from 'views/pages/data_visualization/per_industry';
 import VisualInternalRevenue from 'views/pages/data_visualization/internal_revenue';
 import VisualIncomeStatement from 'views/pages/data_visualization/income_statement';
+import ForeignTrade from 'views/pages/tables/foreign_trade';
 
 const routes = [
     {
@@ -44,13 +43,6 @@ const routes = [
                 name: 'Crime Solution Efficiency',
                 miniName: 'CSE',
                 component: VisualCrimeSolution,
-                layout: '/admin'
-            },
-            {
-                path: '/visual-socio-economic-indicators',
-                name: 'Socio Economic Indicators',
-                miniName: 'SEI',
-                component: VisualSocioEcoIndicators,
                 layout: '/admin'
             },
             {
@@ -111,13 +103,6 @@ const routes = [
                 layout: '/admin'
             },
             {
-                path: '/socio-economic-indicators',
-                name: 'Socio Economic Indicators',
-                miniName: 'SEI',
-                component: SocioEcoIndicators,
-                layout: '/admin'
-            },
-            {
                 path: '/landarea',
                 name: 'Land Area and Total Population',
                 miniName: 'LATP',
@@ -150,6 +135,13 @@ const routes = [
                 name: 'Statement of Income of Municipal Goverments by Province / City',
                 miniName: 'SI',
                 component: IncomeStatement,
+                layout: '/admin'
+            },
+            {
+                path: '/foreign-trade',
+                name: 'Forieign Trade',
+                miniName: 'FT',
+                component: ForeignTrade,
                 layout: '/admin'
             }
         ]
