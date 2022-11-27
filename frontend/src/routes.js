@@ -16,6 +16,7 @@ import VisualInternalRevenue from 'views/pages/data_visualization/internal_reven
 import VisualIncomeStatement from 'views/pages/data_visualization/income_statement';
 import ForeignTrade from 'views/pages/tables/foreign_trade';
 import Employment from 'views/pages/tables/employment';
+import Production from 'views/pages/tables/production'
 
 const routes = [
     {
@@ -150,6 +151,13 @@ const routes = [
                 name: 'Employment',
                 miniName: 'EMP',
                 component: Employment,
+                layout: '/admin'
+            },
+            {
+                path: '/production',
+                name: 'Production',
+                miniName: 'PRO',
+                component: Production,
                 layout: '/admin'
             }
         ]
