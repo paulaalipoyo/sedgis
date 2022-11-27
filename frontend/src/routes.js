@@ -17,6 +17,7 @@ import VisualIncomeStatement from 'views/pages/data_visualization/income_stateme
 import ForeignTrade from 'views/pages/tables/foreign_trade';
 import Employment from 'views/pages/tables/employment';
 import Production from 'views/pages/tables/production'
+import Tourism from 'views/pages/tables/tourism';
 
 const routes = [
     {
@@ -158,6 +159,13 @@ const routes = [
                 name: 'Production',
                 miniName: 'PRO',
                 component: Production,
+                layout: '/admin'
+            },
+            {
+                path: '/tourism',
+                name: 'Tourism',
+                miniName: 'PRO',
+                component: Tourism,
                 layout: '/admin'
             }
         ]
