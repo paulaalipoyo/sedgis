@@ -22,6 +22,8 @@ import VisualForeignTrade from 'views/pages/data_visualization/foreign_trade';
 import VisualEmployment from 'views/pages/data_visualization/employment';
 import VisualProduction from 'views/pages/data_visualization/production';
 import VisualTourism from 'views/pages/data_visualization/tourism';
+import AddIndicator from 'views/pages/data_management/add_indicator';
+import ImportDataset from 'views/pages/data_management/import_dataset';
 
 const routes = [
     {
@@ -198,6 +200,28 @@ const routes = [
                 name: 'Tourism',
                 miniName: 'TOUR',
                 component: Tourism,
+                layout: '/admin'
+            }
+        ]
+    },
+    {
+        collapse: true,
+        name: 'Data Management',
+        icon: 'ni ni-align-left-2 text-default',
+        state: 'dataCollapse',
+        views: [
+            {
+                path: '/add-indicator',
+                name: 'Add Indicator',
+                miniName: 'AI',
+                component: AddIndicator,
+                layout: '/admin'
+            },
+            {
+                path: 'import-dataset',
+                name: 'Import Data set',
+                miniName: 'IDS',
+                component: ImportDataset,
                 layout: '/admin'
             }
         ]
