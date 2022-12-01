@@ -5,12 +5,12 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/mixins";
 
-// Argon functions
+// functions
 @import "custom/functions";
 @import "custom/variables";
 @import "~bootstrap/scss/variables";
 
-// Argon mixins
+// mixins
 @import "custom/mixins";
 
 // Bootstrap components
@@ -48,7 +48,7 @@
 @import "~bootstrap/scss/spinners";
 @import "~bootstrap/scss/print";
 
-// Argon components
+// components
 @import "custom/components";
 @import "custom/utilities";
 @import "custom/vendors";

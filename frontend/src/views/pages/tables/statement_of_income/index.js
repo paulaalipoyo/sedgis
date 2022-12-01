@@ -254,7 +254,7 @@ function IncomeStatement() {
         page: 1,
         alwaysShowAllBtns: true,
         showTotal: true,
-        withFirstAndLast: false,
+        withFirstAndLast: true,
         sizePerPageRenderer: ({
             options,
             currSizePerPage,

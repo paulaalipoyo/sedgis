@@ -15,7 +15,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 // plugins styles downloaded
 import 'assets/vendor/nucleo/css/nucleo.css';
 // core styles
-import 'assets/scss/argon-dashboard-pro-react.scss?v1.2.1';
+import 'assets/scss/dasboard-components.scss';
 
 import AdminLayout from 'layouts/Admin.js';
 import RTLLayout from 'layouts/RTL.js';
