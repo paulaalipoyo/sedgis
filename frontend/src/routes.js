@@ -207,7 +207,7 @@ const routes = [
     {
         collapse: true,
         name: 'Data Management',
-        icon: 'ni ni-align-left-2 text-default',
+        icon: 'ni ni-ui-04 text-info',
         state: 'dataCollapse',
         views: [
             {
@@ -218,8 +218,8 @@ const routes = [
                 layout: '/admin'
             },
             {
-                path: 'import-dataset',
-                name: 'Import Data set',
+                path: '/import-dataset',
+                name: 'Import Data Set',
                 miniName: 'IDS',
                 component: ImportDataset,
                 layout: '/admin'

@@ -432,7 +432,7 @@ function Production() {
                                     },
                                     {
                                         dataField: 'value',
-                                        text: 'Value (Total)',
+                                        text: 'Metric Ton (Total)',
                                         sort: true,
                                         validator: (newValue) => {
                                             if (isNaN(newValue)) {

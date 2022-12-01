@@ -432,7 +432,7 @@ function Employment() {
                                     },
                                     {
                                         dataField: 'value',
-                                        text: 'Value (%)',
+                                        text: 'Percentage (%)',
                                         sort: true,
                                         validator: (newValue) => {
                                             if (isNaN(newValue)) {
