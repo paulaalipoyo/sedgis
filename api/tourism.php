@@ -61,12 +61,12 @@ switch ($method){
         }
         return json_encode($response);
     break;
-    case "DEL":
+    case "DELETE":
         $sql = "DELETE FROM rsep_tourism WHERE id = :id";
         $path = explode('/', $_SERVER['REQUEST_URI']);
 
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id', $path[3]);
+        $stmt->bindParam(':id', $path[4]);
 
         if($stmt->execute()) {
             $response = ['status' =>1, 'message' => 'Record deleted successfully,'];

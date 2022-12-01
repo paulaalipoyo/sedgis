@@ -16,7 +16,7 @@ switch ($method){
         if(isset($path[3]) && is_numeric($path[3])) {
             $sql .= " WHERE id = :id ";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id', $path[3]);
+            $stmt->bindParam(':id', $path[4]);
             $stmt->execute();
             $location = $stmt->fetch(PDO::FETCH_ASSOC);
         } else {
