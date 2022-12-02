@@ -16,7 +16,7 @@ function VisualEmployment() {
                                         width="100%"
                                         height="700px"
                                         src={
-                                            'https://datastudio.google.com/embed/reporting/24710b21-6fe4-43b1-92e1-4157799d8847/page/UGy5C'
+                                            'https://datastudio.google.com/embed/reporting/65c52178-5aa1-41b9-a35f-bb705db94d06/page/UGy5C'
                                         }
                                         allowFullScreen
                                         frameBorder="0"
