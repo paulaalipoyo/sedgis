@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
-// nodejs library that concatenates classes
+import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 import classnames from 'classnames';
-// reactstrap components
+import axios from 'axios';
+import NotificationAlert from 'react-notification-alert';
+import ReactBSAlert from 'react-bootstrap-sweetalert';
 import {
     Button,
     Card,
     CardHeader,
     CardBody,
     FormGroup,
-    Form,
     Input,
     InputGroupAddon,
     InputGroupText,
@@ -18,14 +18,86 @@ import {
     Row,
     Col
 } from 'reactstrap';
-// core components
 import AuthHeader from 'components/Headers/AuthHeader.js';
 
 function Login() {
     const [focusedEmail, setfocusedEmail] = React.useState(false);
     const [focusedPassword, setfocusedPassword] = React.useState(false);
+    const notificationAlertRef = React.useRef(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const history = useHistory();
+    const [alert, setalert] = React.useState(false);
+
+    console.log({ email, password });
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleApi = () => {
+        console.log({ email, password });
+        axios
+            .post('https://reqres.in/api/login', {
+                email: email,
+                password: password
+            })
+            .then((result) => {
+                localStorage.setItem('token', result.data.token);
+                console.log(result.data);
+                successAlert();
+            })
+            .catch((error) => {
+                notifyFailed('danger');
+                console.log(error);
+            });
+    };
+
+    const successAlert = () => {
+        setalert(
+            <ReactBSAlert
+                custom
+                success
+                style={{ display: 'block', marginTop: '-100px' }}
+                title="Welcome!"
+                onConfirm={() => setalert(history.push('/admin'))}
+                onCancel={() => setalert(history.push('/admin'))}
+                confirmBtnBsStyle="default"
+                confirmBtnText="Ok"
+                btnSize="">
+                Successfully Login
+            </ReactBSAlert>
+        );
+    };
+    const notifyFailed = (type) => {
+        let options = {
+            place: 'tc',
+            message: (
+                <div className="alert-text">
+                    <span className="alert-title" data-notify="title">
+                        {' '}
+                        Wrong Credentials!
+                    </span>
+                    <span data-notify="message">
+                        Invalid email and password
+                    </span>
+                </div>
+            ),
+            type: type,
+            icon: 'ni ni-bell-55',
+            autoDismiss: 4
+        };
+        notificationAlertRef.current.notificationAlert(options);
+    };
     return (
         <>
+            {alert}
+            <div className="rna-wrapper">
+                <NotificationAlert ref={notificationAlertRef} />
+            </div>
             <AuthHeader />
             <Container className="mt--8 pb-5">
                 <Row className="justify-content-center">
@@ -52,7 +124,7 @@ function Login() {
                                 </Row>
                             </CardHeader>
                             <CardBody className="px-lg-5 py-lg-5">
-                                <Form role="form">
+                                <form role="form">
                                     <FormGroup
                                         className={classnames('mb-3', {
                                             focused: focusedEmail
@@ -66,12 +138,15 @@ function Login() {
                                             <Input
                                                 placeholder="Email"
                                                 type="email"
+                                                value={email}
                                                 onFocus={() =>
                                                     setfocusedEmail(true)
                                                 }
                                                 onBlur={() =>
                                                     setfocusedEmail(true)
                                                 }
+                                                required
+                                                onChange={handleEmail}
                                             />
                                         </InputGroup>
                                     </FormGroup>
@@ -87,13 +162,15 @@ function Login() {
                                             </InputGroupAddon>
                                             <Input
                                                 placeholder="Password"
-                                                type="password"
+                                                value={password}
                                                 onFocus={() =>
                                                     setfocusedPassword(true)
                                                 }
                                                 onBlur={() =>
                                                     setfocusedPassword(true)
                                                 }
+                                                onChange={handlePassword}
+                                                required
                                             />
                                         </InputGroup>
                                     </FormGroup>
@@ -115,13 +192,13 @@ function Login() {
                                         <Button
                                             className="my-4"
                                             color="primary"
-                                            to="/admin"
-                                            tag={Link}
-                                            type="button">
+                                            onClick={handleApi}
+                                            fullWidth
+                                            variant="contained">
                                             Sign in
                                         </Button>
                                     </div>
-                                </Form>
+                                </form>
                             </CardBody>
                         </Card>
                         <Row className="mt-3"></Row>
