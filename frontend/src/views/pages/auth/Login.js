@@ -161,6 +161,7 @@ function Login() {
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input
+                                                type="password"
                                                 placeholder="Password"
                                                 value={password}
                                                 onFocus={() =>
