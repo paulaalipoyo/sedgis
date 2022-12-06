@@ -16,7 +16,7 @@ function AddIndicator() {
                                         width="100%"
                                         height="700px"
                                         src={
-                                            'https://www.neda-gis.online'
+                                            'https://paulaalipoyo.github.io/working-in-prorgress/'
                                         }
                                         allowFullScreen
                                         frameBorder="0"
