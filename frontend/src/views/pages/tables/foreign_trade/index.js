@@ -432,7 +432,7 @@ function ForeignTrade() {
                                     },
                                     {
                                         dataField: 'value',
-                                        text: 'Value',
+                                        text: 'Value (USD)',
                                         sort: true,
                                         validator: (newValue) => {
                                             if (isNaN(newValue)) {

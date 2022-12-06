@@ -476,7 +476,7 @@ function PovertyStats() {
                                     },
                                     {
                                         dataField: 'value',
-                                        text: 'Value (Php)',
+                                        text: 'Value',
                                         validator: (newValue) => {
                                             if (isNaN(newValue)) {
                                                 return {

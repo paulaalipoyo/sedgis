@@ -418,7 +418,7 @@ function IncomeStatement() {
                                     },
                                     {
                                         dataField: 'value',
-                                        text: 'Value',
+                                        text: 'Value (Php)',
                                         sort: true,
                                         validator: (newValue) => {
                                             if (isNaN(newValue)) {

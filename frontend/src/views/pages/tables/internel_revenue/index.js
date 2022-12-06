@@ -416,7 +416,7 @@ function InternalRevenue() {
                                     },
                                     {
                                         dataField: 'business_tax',
-                                        text: 'Business Tax',
+                                        text: 'Business Tax (Php)',
                                         sort: true,
                                         validator: (newValue) => {
                                             if (isNaN(newValue)) {
@@ -435,7 +435,7 @@ function InternalRevenue() {
                                     },
                                     {
                                         dataField: 'income_tax',
-                                        text: 'Income Tax',
+                                        text: 'Income Tax (Php)',
                                         sort: true,
                                         validator: (newValue) => {
                                             if (isNaN(newValue)) {
@@ -453,7 +453,7 @@ function InternalRevenue() {
                                         formatter: amountFormatter
                                     },
                                     {
-                                        dataField: 'others',
+                                        dataField: 'others (Php)',
                                         text: 'Others',
                                         sort: true,
                                         validator: (newValue) => {
