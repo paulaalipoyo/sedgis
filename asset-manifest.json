@@ -1,12 +1,10 @@
 {
   "files": {
     "main.css": "/static/css/main.d36f583e.css",
-    "main.js": "/static/js/main.8e097eef.js",
+    "main.js": "/static/js/main.a14b3153.js",
     "static/media/fa-solid-900.svg": "/static/media/fa-solid-900.13de59f1a36b6cb4bca0.svg",
     "static/media/fa-brands-400.svg": "/static/media/fa-brands-400.216edb96b562c79adc09.svg",
     "static/media/argon-react.png": "/static/media/argon-react.c9bd4ad5b743afbada9b.png",
-    "static/media/argon-react-white.png": "/static/media/argon-react-white.643a8bf0378cffbb5ac4.png",
-    "static/media/landing-1.png": "/static/media/landing-1.3b67505559bf92a33a85.png",
     "static/media/fa-solid-900.eot": "/static/media/fa-solid-900.efbd5d20e407bbf85f2b.eot",
     "static/media/fa-solid-900.ttf": "/static/media/fa-solid-900.07c3313b24f7b1ca85ee.ttf",
     "static/media/landing-3.png": "/static/media/landing-3.e50d91d647ebd2bdd49f.png",
@@ -32,6 +30,6 @@
   },
   "entrypoints": [
     "static/css/main.d36f583e.css",
-    "static/js/main.8e097eef.js"
+    "static/js/main.a14b3153.js"
   ]
 }
