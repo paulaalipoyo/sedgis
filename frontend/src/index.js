@@ -20,7 +20,6 @@ import 'assets/scss/dasboard-components.scss';
 import AdminLayout from 'layouts/Admin.js';
 import RTLLayout from 'layouts/RTL.js';
 import AuthLayout from 'layouts/Auth.js';
-import IndexView from 'views/Index.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -33,7 +32,7 @@ root.render(
             />
             <Route path="/rtl" render={(props) => <RTLLayout {...props} />} />
             <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
-            <Redirect from="/" to="/auth" />
+            <Redirect to="/auth"/>
         </Switch>
     </BrowserRouter>
 );
