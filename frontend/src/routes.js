@@ -24,6 +24,7 @@ import VisualProduction from 'views/pages/data_visualization/production';
 import VisualTourism from 'views/pages/data_visualization/tourism';
 import AddIndicator from 'views/pages/data_management/add_indicator';
 import ImportDataset from 'views/pages/data_management/import_dataset';
+import UsersSetup from 'views/pages/user_management/users';
 
 const routes = [
     {
@@ -222,6 +223,21 @@ const routes = [
                 name: 'Import Data Set',
                 miniName: 'IDS',
                 component: ImportDataset,
+                layout: '/admin'
+            }
+        ]
+    }, 
+    {
+        collapse: true,
+        name: 'User Management',
+        icon: 'ni ni-badge text-info',
+        state: 'UserCollapse',
+        views: [
+            {
+                path: '/users-management',
+                name: 'Users',
+                miniName: 'US',
+                component: UsersSetup,
                 layout: '/admin'
             }
         ]
