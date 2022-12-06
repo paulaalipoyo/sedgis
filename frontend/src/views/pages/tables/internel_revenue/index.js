@@ -453,8 +453,8 @@ function InternalRevenue() {
                                         formatter: amountFormatter
                                     },
                                     {
-                                        dataField: 'others (Php)',
-                                        text: 'Others',
+                                        dataField: 'others',
+                                        text: 'others (Php)',
                                         sort: true,
                                         validator: (newValue) => {
                                             if (isNaN(newValue)) {

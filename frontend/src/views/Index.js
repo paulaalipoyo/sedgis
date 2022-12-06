@@ -15,7 +15,6 @@ import {
 } from 'reactstrap';
 // core components
 import IndexNavbar from 'components/Navbars/IndexNavbar.js';
-import IndexHeader from 'components/Headers/IndexHeader.js';
 import AuthFooter from 'components/Footers/AuthFooter.js';
 
 function Index() {
@@ -145,80 +144,8 @@ function Index() {
                     </Container>
                 </section>
                 <section className="py-6">
-                    <Container>
-                        <Row className="row-grid align-items-center">
-                            <Col className="order-md-2" md="6">
-                                <img
-                                    alt="..."
-                                    className="img-fluid"
-                                    src={require('assets/img/theme/landing-1.png')}
-                                />
-                            </Col>
-                            <Col className="order-md-1" md="6">
-                                <div className="pr-md-5">
-                                    <h1>Awesome features</h1>
-                                    <p>
-                                        The kit comes with three pre-built pages
-                                        to help you get started faster. You can
-                                        change the text and images and you're
-                                        good to go.
-                                    </p>
-                                    <ul className="list-unstyled mt-5">
-                                        <li className="py-2">
-                                            <div className="d-flex align-items-center">
-                                                <div>
-                                                    <Badge
-                                                        className="badge-circle mr-3"
-                                                        color="success">
-                                                        <i className="ni ni-settings-gear-65" />
-                                                    </Badge>
-                                                </div>
-                                                <div>
-                                                    <h4 className="mb-0">
-                                                        Carefully crafted
-                                                        components
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="py-2">
-                                            <div className="d-flex align-items-center">
-                                                <div>
-                                                    <Badge
-                                                        className="badge-circle mr-3"
-                                                        color="success">
-                                                        <i className="ni ni-html5" />
-                                                    </Badge>
-                                                </div>
-                                                <div>
-                                                    <h4 className="mb-0">
-                                                        Amazing page examples
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="py-2">
-                                            <div className="d-flex align-items-center">
-                                                <div>
-                                                    <Badge
-                                                        className="badge-circle mr-3"
-                                                        color="success">
-                                                        <i className="ni ni-satisfied" />
-                                                    </Badge>
-                                                </div>
-                                                <div>
-                                                    <h4 className="mb-0">
-                                                        Super friendly support
-                                                        team
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
+                    
+       
                 </section>
                 <section className="py-6">
                     <Container>
