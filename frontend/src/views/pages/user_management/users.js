@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBody, Container, Row, Col } from 'reactstrap';
 import SimpleHeader from 'components/Headers/SimpleHeader.js';
 
-function ImportDataset() {
+function UsersSetup() {
     return (
         <>
             <SimpleHeader />
@@ -12,7 +12,7 @@ function ImportDataset() {
                         <Card>
                             <CardBody>
                                 <div className="reportwrapper">
-                                    <iframe title="Poverty Statistics"
+                                    <iframe title="Users"
                                         width="100%"
                                         height="700px"
                                         src={
@@ -31,4 +31,4 @@ function ImportDataset() {
     );
 }
 
-export default ImportDataset;
+export default UsersSetup;
