@@ -124,7 +124,7 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                                         </span>
                                         <Media className="ml-2 d-none d-lg-block">
                                             <span className="mb-0 text-sm font-weight-bold">
-                                                Super Admin
+                                                Admin
                                             </span>
                                         </Media>
                                     </Media>
@@ -138,19 +138,6 @@ function AdminNavbar({ theme, sidenavOpen, toggleSidenav }) {
                                             Welcome!
                                         </h6>
                                     </DropdownItem>
-                                    <DropdownItem
-                                        href="#pablo"
-                                        onClick={(e) => e.preventDefault()}>
-                                        <i className="ni ni-single-02" />
-                                        <span>My profile</span>
-                                    </DropdownItem>
-                                    <DropdownItem
-                                        href="#pablo"
-                                        onClick={(e) => e.preventDefault()}>
-                                        <i className="ni ni-settings-gear-65" />
-                                        <span>Settings</span>
-                                    </DropdownItem>
-                                    <DropdownItem divider />
                                     <DropdownItem to="/auth/login" tag={Link}>
                                         <i className="ni ni-user-run" />
                                         <span>Logout</span>
