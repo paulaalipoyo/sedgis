@@ -29,13 +29,14 @@ switch ($method){
     break;
     case "POST":
         $povertystat = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO rsep_poverty_statistics(id, location, sub_indicators, sector, year, value, unit, created_at) VALUES (null, :location, :sub_indicators, :sector, :year, :value, :unit, :created_at)";
+        $sql = "INSERT INTO rsep_poverty_statistics(id, location, sub_indicators, sector, year, period, value, unit, created_at) VALUES (null, :location, :sub_indicators, :sector, :year, :period, :value, :unit, :created_at)";
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
         $stmt->bindParam(':location',$povertystat->location);
         $stmt->bindParam(':sub_indicators',$povertystat->sub_indicators);
         $stmt->bindParam(':sector',$povertystat->sector);
         $stmt->bindParam(':year',$povertystat->year);
+        $stmt->bindParam(':period',$povertystat->period);
         $stmt->bindParam(':value',$povertystat->value);
         $stmt->bindParam(':unit',$povertystat->unit);
         $stmt->bindParam(':created_at', $created_at);
