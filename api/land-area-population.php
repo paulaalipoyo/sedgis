@@ -29,11 +29,12 @@ switch ($method){
     break;
     case "POST":
         $landarea = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO rsep_land_area(id, location, year, land_area_km, population, municipalities, cities, city_type, barangays, created_at) VALUES (null, :location, :year, :land_area_km, :population, :municipalities, :cities, :city_type, :barangays, :created_at)";
+        $sql = "INSERT INTO rsep_land_area(id, location, year, period, land_area_km, population, municipalities, cities, city_type, barangays, created_at) VALUES (null, :location, :year, :period, :land_area_km, :population, :municipalities, :cities, :city_type, :barangays, :created_at)";
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
         $stmt->bindParam(':location',$landarea->location);
         $stmt->bindParam(':year',$landarea->year);
+        $stmt->bindParam(':period',$landarea->period);
         $stmt->bindParam(':land_area_km',$landarea->land_area_km);
         $stmt->bindParam(':population',$landarea->population);
         $stmt->bindParam(':municipalities',$landarea->municipalities);

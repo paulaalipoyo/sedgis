@@ -40,6 +40,7 @@ function LandAreaPopulation() {
     const { ExportCSVButton } = CSVExport;
     const [locationLists, setLocationList] = useState([]);
     const [yearLists, setYearLists] = useState([]);
+    const [periodLists, setPeriodLists] = useState([]);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -319,6 +320,44 @@ function LandAreaPopulation() {
         return number.toLocaleString('Php');
     }
 
+    // temporary needs rework
+    const perioditems = [
+        {
+            group: 'Annual',
+            options: [
+                { value: 'Annual', label: 'Annual' },
+            ]
+        },
+        {
+            group: 'Semestral',
+            options: [
+                { value: '1st Sem', label: '1st Sem' },
+                { value: '2nd Sem', label: '2nd Sem' }
+            ]
+        },
+        {
+            group: 'Quarterly',
+            options: [
+                { value: '1st Quarter', label: '1st Quarter' },
+                { value: '2nd Quarter', label: '2nd Quarter' },
+                { value: '3rd Quarter', label: '3rd Quarter' },
+                { value: '4th Quarter', label: '4th Quarter' }
+            ]
+        }
+    ];
+
+    const filterEditPeriodItems = [
+                { value: 'Annual', label: 'Annual' },
+                { value: '1st Sem', label: 'Semestral : 1st Sem' },
+                { value: '2nd Sem', label: 'Semestral : 2nd Sem' },
+                { value: '1st Quarter', label: 'Quarterly : 1st Quarter' },
+                { value: '2nd Quarter', label: 'Quarterly : 2nd Quarter' },
+                { value: '3rd Quarter', label: 'Quarterly : 3rd Quarter' },
+                { value: '4th Quarter', label: 'Quarterly : 4th Quarter' }
+            
+    ];
+    // temporary needs rework
+    
     return (
         <>
             {alert}
@@ -404,6 +443,29 @@ function LandAreaPopulation() {
                                             options: yearLists.map((item) => ({
                                                 value: item.year_name,
                                                 label: item.year_name
+                                            })),
+                                            withoutEmptyOption: false
+                                        }),
+                                        sort: true,
+                                        align: 'center',
+                                        headerAlign: 'center',
+                                        headerFormatter: columnHeadFormat,
+                                        title: () => `Double click to edit`
+                                    },
+                                    {
+                                        dataField: 'period',
+                                        text: 'Period',
+                                        editor: {
+                                            type: Type.SELECT,
+                                            options: filterEditPeriodItems.map((item) => ({
+                                                value: item.value,
+                                                label: item.label,
+                                            }))
+                                        },
+                                        filter: selectFilter({
+                                            options: filterEditPeriodItems.map((item) => ({
+                                                value: item.value,
+                                                label: item.label,
                                             })),
                                             withoutEmptyOption: false
                                         }),
@@ -703,6 +765,37 @@ function LandAreaPopulation() {
                                             value={item.location_Name}>
                                             {item.location_Name}
                                         </option>
+                                    ))}
+                                </Input>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup className="row">
+                            <Label
+                                className="form-control-label"
+                                htmlFor="example-date-input"
+                                md="2">
+                                Period
+                            </Label>
+                            <Col md="10">
+                                <Input
+                                    id="period"
+                                    name="period"
+                                    type="select"
+                                    required
+                                    onChange={handleChange}>
+                                    <optgroup>Please Select</optgroup>
+                                    {perioditems.map((item) => (
+                                        <optgroup
+                                            key={item.group}
+                                            label={item.group}>
+                                            {item.options.map((option) => (
+                                                <option
+                                                    key={option.value}
+                                                    value={option.value}>
+                                                    {option.label}
+                                                </option>
+                                            ))}
+                                        </optgroup>
                                     ))}
                                 </Input>
                             </Col>
