@@ -29,11 +29,12 @@ switch ($method){
     break;
     case "POST":
         $incomestatement = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO rsep_income_statement(id, location, year, value, created_at) VALUES (null, :location, :year, :value, :created_at)";
+        $sql = "INSERT INTO rsep_income_statement(id, location, year, period, value, created_at) VALUES (null, :location, :year, :period, :value, :created_at)";
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
         $stmt->bindParam(':location',$incomestatement->location);
         $stmt->bindParam(':year',$incomestatement->year);
+        $stmt->bindParam(':period',$incomestatement->period);
         $stmt->bindParam(':value',$incomestatement->value);
         $stmt->bindParam(':created_at', $created_at);
         if($stmt->execute()) {

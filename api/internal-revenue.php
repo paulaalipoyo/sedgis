@@ -29,11 +29,12 @@ switch ($method){
     break;
     case "POST":
         $internalrev = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO rsep_internal_revenue(id, location, year, business_tax, income_tax, others, created_at) VALUES (null, :location, :year, :business_tax, :income_tax, :others, :created_at)";
+        $sql = "INSERT INTO rsep_internal_revenue(id, location, year, period, business_tax, income_tax, others, created_at) VALUES (null, :location, :year, :period, :business_tax, :income_tax, :others, :created_at)";
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
         $stmt->bindParam(':location',$internalrev->location);
         $stmt->bindParam(':year',$internalrev->year);
+        $stmt->bindParam(':period',$internalrev->period);
         $stmt->bindParam(':business_tax',$internalrev->business_tax);
         $stmt->bindParam(':income_tax',$internalrev->income_tax);
         $stmt->bindParam(':others',$internalrev->others);

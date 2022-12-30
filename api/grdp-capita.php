@@ -29,13 +29,14 @@ switch ($method){
     break;
     case "POST":
         $percapita = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO rsep_grdp_capita(id, location, sub_indicators, sector, year, value, unit, created_at) VALUES (null, :location, :sub_indicators, :sector, :year, :value, :unit, :created_at)";
+        $sql = "INSERT INTO rsep_grdp_capita(id, location, sub_indicators, sector, year, period, value, unit, created_at) VALUES (null, :location, :sub_indicators, :sector, :year, :period, :value, :unit, :created_at)";
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
         $stmt->bindParam(':location',$percapita->location);
         $stmt->bindParam(':sub_indicators',$percapita->sub_indicators);
         $stmt->bindParam(':sector',$percapita->sector);
         $stmt->bindParam(':year',$percapita->year);
+        $stmt->bindParam(':period',$percapita->period);
         $stmt->bindParam(':value',$percapita->value);
         $stmt->bindParam(':unit',$percapita->unit);
         $stmt->bindParam(':created_at', $created_at);

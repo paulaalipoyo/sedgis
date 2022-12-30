@@ -29,11 +29,12 @@ switch ($method){
     break;
     case "POST":
         $production = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO rsep_production(id, sub_indicators, year, value, created_at) VALUES (null, :sub_indicators, :year, :value, :created_at)";
+        $sql = "INSERT INTO rsep_production(id, sub_indicators, year, period, value, created_at) VALUES (null, :sub_indicators, :year, :period, :value, :created_at)";
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
         $stmt->bindParam(':sub_indicators',$production->sub_indicators);
         $stmt->bindParam(':year',$production->year);
+        $stmt->bindParam(':period',$production->period);
         $stmt->bindParam(':value',$production->value);
         $stmt->bindParam(':created_at', $created_at);
         if($stmt->execute()) {

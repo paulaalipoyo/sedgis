@@ -29,11 +29,12 @@ switch ($method){
     break;
     case "POST":
         $perindustry = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO rsep_grdp_industry(id, sub_indicators, year, value, unit, created_at) VALUES (null,:sub_indicators, :year, :value, :unit, :created_at)";
+        $sql = "INSERT INTO rsep_grdp_industry(id, sub_indicators, year, period, value, unit, created_at) VALUES (null,:sub_indicators, :year, :period, :value, :unit, :created_at)";
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
         $stmt->bindParam(':sub_indicators',$perindustry->sub_indicators);
         $stmt->bindParam(':year',$perindustry->year);
+        $stmt->bindParam(':period',$perindustry->period);
         $stmt->bindParam(':value',$perindustry->value);
         $stmt->bindParam(':unit',$perindustry->unit);
         $stmt->bindParam(':created_at', $created_at);

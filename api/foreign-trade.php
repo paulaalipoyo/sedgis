@@ -29,11 +29,12 @@ switch ($method){
     break;
     case "POST":
         $foreigntrade = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO rsep_foreign_trade(id, sub_indicators, year, value, unit, created_at) VALUES (null, :sub_indicators, :year, :value, :unit, :created_at)";
+        $sql = "INSERT INTO rsep_foreign_trade(id, sub_indicators, year, period, value, unit, created_at) VALUES (null, :sub_indicators, :year, :period, :value, :unit, :created_at)";
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
         $stmt->bindParam(':sub_indicators',$foreigntrade->sub_indicators);
         $stmt->bindParam(':year',$foreigntrade->year);
+        $stmt->bindParam(':period',$foreigntrade->period);
         $stmt->bindParam(':value',$foreigntrade->value);
         $stmt->bindParam(':unit',$foreigntrade->unit);
         $stmt->bindParam(':created_at', $created_at);
