@@ -29,11 +29,12 @@ switch ($method){
     break;
     case "POST":
         $crimesolution = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO rsep_crime_solution(id, location, year, value, created_at) VALUES (null, :location, :year, :value, :created_at)";
+        $sql = "INSERT INTO rsep_crime_solution(id, location, year, period, value, created_at) VALUES (null, :location, :year, :period, :value, :created_at)";
         $stmt = $conn->prepare($sql);
         $created_at = date('Y-m-d');
         $stmt->bindParam(':location',$crimesolution->location);
         $stmt->bindParam(':year',$crimesolution->year);
+        $stmt->bindParam(':period',$crimesolution->period);
         $stmt->bindParam(':value',$crimesolution->value);
         $stmt->bindParam(':created_at', $created_at);
         if($stmt->execute()) {
