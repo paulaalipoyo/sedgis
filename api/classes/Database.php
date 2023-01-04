@@ -3,7 +3,7 @@ class Database{
     
     // CHANGE THE DB INFO ACCORDING TO YOUR DATABASE
     private $db_host = '127.0.0.1:3306';
-    private $db_name = 'php_auth_api';
+    private $db_name = 'socioeconomic';
     private $db_username = 'root';
     private $db_password = '';
     

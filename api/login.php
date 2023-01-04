@@ -69,7 +69,7 @@ else:
 
                     $jwt = new JwtHandler();
                     $token = $jwt->jwtEncodeData(
-                        'http://localhost/php_auth_api/',
+                        'http://localhost:80/sedgis/',
                         array("user_id"=> $row['id'])
                     );
                     

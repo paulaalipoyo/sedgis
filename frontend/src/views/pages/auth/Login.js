@@ -1,8 +1,7 @@
-import { useHistory } from 'react-router-dom';
-import React, { useState } from 'react';
-import classnames from 'classnames';
-import axios from 'axios';
+import { UserContext } from '../../../context/UserContext';
+import React, { useState, useContext } from 'react';
 import NotificationAlert from 'react-notification-alert';
+import { Link } from 'react-router-dom';
 import ReactBSAlert from 'react-bootstrap-sweetalert';
 import {
     Button,
@@ -21,77 +20,101 @@ import {
 import AuthHeader from 'components/Headers/AuthHeader.js';
 
 function Login() {
-    const [focusedEmail, setfocusedEmail] = React.useState(false);
-    const [focusedPassword, setfocusedPassword] = React.useState(false);
+    const { loginUser, wait, loggedInCheck } = useContext(UserContext);
+    const [focusedEmail, setfocusedEmail] = useState(false);
+    const [focusedPassword, setfocusedPassword] = useState(false);
     const notificationAlertRef = React.useRef(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const history = useHistory();
-    const [alert, setalert] = React.useState(false);
+    const [alert, setalert] = useState(false);
+    const [redirect, setRedirect] = useState(false);
+    const [errMsg, setErrMsg] = useState(false);
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
 
     console.log({ email, password });
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
+
+    const onChangeInput = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
     };
 
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
+    const submitForm = async (e) => {
+        e.preventDefault();
+
+        if (!Object.values(formData).every((val) => val.trim() !== '')) {
+            setErrMsg('Please Fill in all Required Fields!');
+            return;
+        }
+
+        const data = await loginUser(formData);
+        if (data.success) {
+            e.target.reset();
+            setRedirect('Redirecting...');
+            await loggedInCheck();
+            return;
+        }
+        setErrMsg(data.message);
     };
 
-    const handleApi = () => {
-        console.log({ email, password });
-        axios
-            .post('https://reqres.in/api/login', {
-                email: email,
-                password: password
-            })
-            .then((result) => {
-                localStorage.setItem('token', result.data.token);
-                console.log(result.data);
-                successAlert();
-            })
-            .catch((error) => {
-                notifyFailed('danger');
-                console.log(error);
-            });
-    };
+    // const handleApi = () => {
+    //     console.log({ email, password });
+    //     axios
+    //         .post('https://reqres.in/api/login', {
+    //             email: email,
+    //             password: password
+    //         })
+    //         .then((result) => {
+    //             localStorage.setItem('token', result.data.token);
+    //             console.log(result.data);
+    //             successAlert();
+    //         })
+    //         .catch((error) => {
+    //             notifyFailed('danger');
+    //             console.log(error);
+    //         });
+    // };
 
-    const successAlert = () => {
-        setalert(
-            <ReactBSAlert
-                custom
-                success
-                style={{ display: 'block', marginTop: '-100px' }}
-                title="Welcome!"
-                onConfirm={() => setalert(history.push('/admin'))}
-                onCancel={() => setalert(history.push('/admin'))}
-                confirmBtnBsStyle="default"
-                confirmBtnText="Ok"
-                btnSize="">
-                Successfully Login
-            </ReactBSAlert>
-        );
-    };
-    const notifyFailed = (type) => {
-        let options = {
-            place: 'tc',
-            message: (
-                <div className="alert-text">
-                    <span className="alert-title" data-notify="title">
-                        {' '}
-                        Wrong Credentials!
-                    </span>
-                    <span data-notify="message">
-                        Invalid email and password
-                    </span>
-                </div>
-            ),
-            type: type,
-            icon: 'ni ni-bell-55',
-            autoDismiss: 4
-        };
-        notificationAlertRef.current.notificationAlert(options);
-    };
+    // const successAlert = () => {
+    //     setalert(
+    //         <ReactBSAlert
+    //             custom
+    //             success
+    //             style={{ display: 'block', marginTop: '-100px' }}
+    //             title="Welcome!"
+    //             onConfirm={() => setalert(history.push('/admin'))}
+    //             onCancel={() => setalert(history.push('/admin'))}
+    //             confirmBtnBsStyle="default"
+    //             confirmBtnText="Ok"
+    //             btnSize="">
+    //             Successfully Login
+    //         </ReactBSAlert>
+    //     );
+    // };
+    // const notifyFailed = (type) => {
+    //     let options = {
+    //         place: 'tc',
+    //         message: (
+    //             <div className="alert-text">
+    //                 <span className="alert-title" data-notify="title">
+    //                     {' '}
+    //                     Wrong Credentials!
+    //                 </span>
+    //                 <span data-notify="message">
+    //                     Invalid email and password
+    //                 </span>
+    //             </div>
+    //         ),
+    //         type: type,
+    //         icon: 'ni ni-bell-55',
+    //         autoDismiss: 4
+    //     };
+    //     notificationAlertRef.current.notificationAlert(options);
+    // };
     return (
         <>
             {alert}
@@ -124,11 +147,8 @@ function Login() {
                                 </Row>
                             </CardHeader>
                             <CardBody className="px-lg-5 py-lg-5">
-                                <form role="form">
-                                    <FormGroup
-                                        className={classnames('mb-3', {
-                                            focused: focusedEmail
-                                        })}>
+                                <form role="form" onSubmit={submitForm}>
+                                    <FormGroup>
                                         <InputGroup className="input-group-merge input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
                                                 <InputGroupText>
@@ -138,7 +158,9 @@ function Login() {
                                             <Input
                                                 placeholder="Email"
                                                 type="email"
-                                                value={email}
+                                                name="email"
+                                                id="email"
+                                                value={formData.email}
                                                 onFocus={() =>
                                                     setfocusedEmail(true)
                                                 }
@@ -146,14 +168,11 @@ function Login() {
                                                     setfocusedEmail(true)
                                                 }
                                                 required
-                                                onChange={handleEmail}
+                                                onChange={onChangeInput}
                                             />
                                         </InputGroup>
                                     </FormGroup>
-                                    <FormGroup
-                                        className={classnames({
-                                            focused: focusedPassword
-                                        })}>
+                                    <FormGroup>
                                         <InputGroup className="input-group-merge input-group-alternative">
                                             <InputGroupAddon addonType="prepend">
                                                 <InputGroupText>
@@ -163,41 +182,39 @@ function Login() {
                                             <Input
                                                 type="password"
                                                 placeholder="Password"
-                                                value={password}
+                                                id="password"
+                                                name="password"
+                                                value={formData.password}
                                                 onFocus={() =>
                                                     setfocusedPassword(true)
                                                 }
                                                 onBlur={() =>
                                                     setfocusedPassword(true)
                                                 }
-                                                onChange={handlePassword}
+                                                onChange={onChangeInput}
                                                 required
                                             />
                                         </InputGroup>
                                     </FormGroup>
-                                    <div className="custom-control custom-control-alternative custom-checkbox">
-                                        <input
-                                            className="custom-control-input"
-                                            id=" customCheckLogin"
-                                            type="checkbox"
-                                        />
-                                        <label
-                                            className="custom-control-label"
-                                            htmlFor=" customCheckLogin">
-                                            <span className="text-muted">
-                                                Remember me
-                                            </span>
-                                        </label>
-                                    </div>
                                     <div className="text-center">
-                                        <Button
-                                            className="my-4"
-                                            color="primary"
-                                            onClick={handleApi}
-                                            fullWidth
-                                            variant="contained">
-                                            Sign in
-                                        </Button>
+                                        {errMsg && (
+                                            <div className="err-msg">
+                                                {errMsg}
+                                            </div>
+                                        )}
+                                        {redirect ? (
+                                            redirect
+                                        ) : (
+                                            <Button
+                                                className="my-4"
+                                                color="primary"
+                                                type="submit"
+                                                disabled={wait}
+                                                fullWidth
+                                                variant="contained">
+                                                Sign in
+                                            </Button>
+                                        )}
                                     </div>
                                 </form>
                             </CardBody>

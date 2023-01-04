@@ -1,6 +1,8 @@
 import React from 'react';
+import { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { UserContext } from './context/UserContext.js';
 import 'react-notification-alert/dist/animate.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import '@fullcalendar/common/main.min.css';
@@ -15,19 +17,31 @@ import AdminLayout from 'layouts/Admin.js';
 import RTLLayout from 'layouts/RTL.js';
 import AuthLayout from 'layouts/Auth.js';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const user = useContext[UserContext];
 
 root.render(
     <BrowserRouter>
         <Switch>
-            <Route
+            {user && (
+                <Route
                     path="/admin"
                     render={(props) => <AdminLayout {...props} />}
-            />
-            <Route path="/rtl" render={(props) => <RTLLayout {...props} />} />
-            <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
-            <Redirect from="/" to="/auth" />
+                />
+            )}
+            {!user && (
+                <Route
+                    path="/rtl"
+                    render={(props) => <RTLLayout {...props} />}
+                />
+            )}
+            {!user && (
+                <Route
+                    path="/auth"
+                    render={(props) => <AuthLayout {...props} />}
+                />
+            )}
+            <Redirect from="/" to={ user ? "/":"/auth" } />
         </Switch>
     </BrowserRouter>
 );
