@@ -25,4 +25,6 @@ yarn-error.log*
 
 package-lock.json
 api/DbConnect.php
+api/login.php
+api/classes/Database.php
 frontend/env.local
