@@ -5,12 +5,14 @@ import { useLocation, Route, Switch, Redirect } from 'react-router-dom';
 import AdminNavbar from 'components/Navbars/AdminNavbar.js';
 import AdminFooter from 'components/Footers/AdminFooter.js';
 import Sidebar from 'components/Sidebar/Sidebar.js';
-
+import {useContext} from 'react';
+import {UserContext} from '../context/UserContext';
 import routes from 'routes.js';
 
 function Admin() {
     const [sidenavOpen, setSidenavOpen] = React.useState(true);
     const location = useLocation();
+    const {user} = useContext(UserContext);
     const mainContentRef = React.useRef(null);
     React.useEffect(() => {
         document.documentElement.scrollTop = 0;
@@ -84,7 +86,9 @@ function Admin() {
                 />
                 <Switch>
                     {getRoutes(routes)}
+                    { user &&
                     <Redirect from="*" to="/admin/geographical-data" />
+                    }
                 </Switch>
                 <AdminFooter />
             </div>

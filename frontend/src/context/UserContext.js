@@ -6,7 +6,7 @@ const { REACT_APP_API_URL } = process.env;
 export const UserContext = createContext();
 
 export const Axios = axios.create({
-    baseURL: `${REACT_APP_API_URL}/sedgis/api`,
+    baseURL: `${REACT_APP_API_URL}`,
 });
 
 export const UserContextProvider = ({ children }) => {

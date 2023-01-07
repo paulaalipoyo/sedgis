@@ -16,6 +16,7 @@ import {
 // core components
 import IndexNavbar from 'components/Navbars/IndexNavbar.js';
 import AuthFooter from 'components/Footers/AuthFooter.js';
+import UserContextProvider from '..UserContext/context/UserContext';
 
 function Index() {
     return (

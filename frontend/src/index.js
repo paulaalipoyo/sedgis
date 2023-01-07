@@ -14,34 +14,29 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'assets/vendor/nucleo/css/nucleo.css';
 import 'assets/scss/dasboard-components.scss';
 import AdminLayout from 'layouts/Admin.js';
-import RTLLayout from 'layouts/RTL.js';
 import AuthLayout from 'layouts/Auth.js';
+import UserContextProvider from './context/UserContext.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const user = useContext[UserContext];
 
 root.render(
-    <BrowserRouter>
-        <Switch>
-            {user && (
-                <Route
-                    path="/admin"
-                    render={(props) => <AdminLayout {...props} />}
-                />
-            )}
-            {!user && (
-                <Route
-                    path="/rtl"
-                    render={(props) => <RTLLayout {...props} />}
-                />
-            )}
-            {!user && (
-                <Route
-                    path="/auth"
-                    render={(props) => <AuthLayout {...props} />}
-                />
-            )}
-            <Redirect from="/" to={ user ? "/":"/auth" } />
-        </Switch>
-    </BrowserRouter>
+    <UserContextProvider>
+        <BrowserRouter>
+            <Switch>
+                {!user && <Route
+                        path="/admin"
+                        render={(props) => <AdminLayout {...props} />}
+                    />
+                }
+                {!user && 
+                    <Route
+                        path="/auth"
+                        render={(props) => <AuthLayout {...props} />}
+                    />
+                }
+                <Redirect from="/" to={ user ? "/":"/auth" } />
+            </Switch>
+        </BrowserRouter>
+    </UserContextProvider>
 );

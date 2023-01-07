@@ -1,6 +1,7 @@
 import { UserContext } from '../../../context/UserContext';
 import React, { useState, useContext } from 'react';
 import NotificationAlert from 'react-notification-alert';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ReactBSAlert from 'react-bootstrap-sweetalert';
 import {
@@ -33,6 +34,7 @@ function Login() {
         email: '',
         password: ''
     });
+    const history = useHistory();
 
     console.log({ email, password });
 
@@ -54,67 +56,30 @@ function Login() {
         const data = await loginUser(formData);
         if (data.success) {
             e.target.reset();
-            setRedirect('Redirecting...');
+            successAlert();
             await loggedInCheck();
             return;
         }
         setErrMsg(data.message);
     };
 
-    // const handleApi = () => {
-    //     console.log({ email, password });
-    //     axios
-    //         .post('https://reqres.in/api/login', {
-    //             email: email,
-    //             password: password
-    //         })
-    //         .then((result) => {
-    //             localStorage.setItem('token', result.data.token);
-    //             console.log(result.data);
-    //             successAlert();
-    //         })
-    //         .catch((error) => {
-    //             notifyFailed('danger');
-    //             console.log(error);
-    //         });
-    // };
+    const successAlert = () => {
+        setalert(
+            <ReactBSAlert
+                custom
+                success
+                style={{ display: 'block', marginTop: '-100px' }}
+                title="Welcome!"
+                onConfirm={() => setalert(history.push('/admin'))}
+                onCancel={() => setalert(history.push('/admin'))}
+                confirmBtnBsStyle="default"
+                confirmBtnText="Ok"
+                btnSize="">
+                Successfully Login
+            </ReactBSAlert>
+        );
+    };
 
-    // const successAlert = () => {
-    //     setalert(
-    //         <ReactBSAlert
-    //             custom
-    //             success
-    //             style={{ display: 'block', marginTop: '-100px' }}
-    //             title="Welcome!"
-    //             onConfirm={() => setalert(history.push('/admin'))}
-    //             onCancel={() => setalert(history.push('/admin'))}
-    //             confirmBtnBsStyle="default"
-    //             confirmBtnText="Ok"
-    //             btnSize="">
-    //             Successfully Login
-    //         </ReactBSAlert>
-    //     );
-    // };
-    // const notifyFailed = (type) => {
-    //     let options = {
-    //         place: 'tc',
-    //         message: (
-    //             <div className="alert-text">
-    //                 <span className="alert-title" data-notify="title">
-    //                     {' '}
-    //                     Wrong Credentials!
-    //                 </span>
-    //                 <span data-notify="message">
-    //                     Invalid email and password
-    //                 </span>
-    //             </div>
-    //         ),
-    //         type: type,
-    //         icon: 'ni ni-bell-55',
-    //         autoDismiss: 4
-    //     };
-    //     notificationAlertRef.current.notificationAlert(options);
-    // };
     return (
         <>
             {alert}

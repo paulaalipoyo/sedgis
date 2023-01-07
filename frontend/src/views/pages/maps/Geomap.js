@@ -1,7 +1,10 @@
 import React from 'react';
 import { Card, CardBody, Container, Row, Col } from 'reactstrap';
+import {useContext} from 'react';
+import {UserContext} from '../../../context/UserContext';
 
 function Geomap() {
+    const {user, logout} = useContext(UserContext);
     return (
         <div>
             <Row>
