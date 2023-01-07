@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import NotificationAlert from 'react-notification-alert';
 import cellEditFactory, { Type } from 'react-bootstrap-table2-editor';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import React from 'react';
+import { UserContext } from '../../../context/UserContext';
 import {
     Card,
     CardHeader,
@@ -27,16 +28,27 @@ import ToolkitProvider from 'react-bootstrap-table2-toolkit';
 const { REACT_APP_API_URL } = process.env;
 
 function UsersSetup() {
+    const { registerUser, wait } = useContext(UserContext);
     const [addModalshow, setAddModal] = React.useState(false);
     const [users, setUsers] = useState([]);
     const notificationAlertRef = React.useRef(false);
     const [inputs, setInputs] = useState({});
     const [roleList, setRoleslist] = useState([]);
+    const [successMsg, setSuccessMsg] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        type: ''
+    });
 
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs((values) => ({ ...values, [name]: value }));
+    const [errMsg, setErrMsg] = useState(false);
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
     };
 
     useEffect(() => {
@@ -78,13 +90,34 @@ function UsersSetup() {
             });
     }
 
-    const addHandleSubmit = () => {
-        axios
-            .post(`${REACT_APP_API_URL}/users-list.php/users/save`, inputs)
-            .then(function (response) {
-                console.log(response.data);
-                getUsers(response.data);
-            });
+    // const addHandleSubmit = () => {
+    //     axios
+    //         .post(`${REACT_APP_API_URL}/users-list.php/users/save`, inputs)
+    //         .then(function (response) {
+    //             console.log(response.data);
+    //             getUsers(response.data);
+    //         });
+    // };
+
+    const addHandleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!Object.values(formData).every((val) => val.trim() !== '')) {
+            setSuccessMsg(false);
+            setErrMsg('Please Fill in all Required Fields!');
+            return;
+        }
+
+        const data = await registerUser(formData);
+        if (data.success) {
+            e.target.reset();
+            addnotify('success');
+            setAddModal(false);
+            setErrMsg(false);
+        } else if (!data.success && data.message) {
+            setSuccessMsg(false);
+            setErrMsg(data.message);
+        }
     };
 
     const updateNotify = (type) => {
@@ -369,7 +402,7 @@ function UsersSetup() {
                     </button>
                 </div>
                 <div className="modal-body">
-                    <Form>
+                    <form role="form" onSubmit={addHandleSubmit}>
                         <FormGroup className="row">
                             <Label
                                 className="form-control-label"
@@ -383,6 +416,7 @@ function UsersSetup() {
                                     id="name"
                                     name="name"
                                     type="text"
+                                    value={formData.name}
                                     onChange={handleChange}
                                 />
                             </Col>
@@ -399,6 +433,7 @@ function UsersSetup() {
                                     id="type"
                                     name="type"
                                     type="select"
+                                    value={formData.type}
                                     required
                                     onChange={handleChange}>
                                     <option disabled selected>
@@ -424,9 +459,9 @@ function UsersSetup() {
                             <Col md="10">
                                 <Input
                                     placeholder="email"
-                                    htmlFor="example-text-input"
                                     id="email"
                                     name="email"
+                                    value={formData.email}
                                     type="email"
                                     required
                                     onChange={handleChange}
@@ -442,43 +477,22 @@ function UsersSetup() {
                             </Label>
                             <Col md="10">
                                 <Input
-                                    placeholder="email"
-                                    htmlFor="example-text-input"
+                                    placeholder="password"
                                     id="password"
                                     name="password"
                                     type="password"
+                                    value={formData.password}
                                     required
                                     onChange={handleChange}
                                 />
                             </Col>
                         </FormGroup>
-                        <FormGroup className="row">
-                            <Label
-                                className="form-control-label"
-                                htmlFor="example-tel-input"
-                                md="2">
-                                Confirm Password
-                            </Label>
-                            <Col md="10">
-                                <Input
-                                    placeholder="email"
-                                    htmlFor="example-text-input"
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    required
-                                    onChange={handleChange}
-                                />
-                            </Col>
-                        </FormGroup>
+                        {errMsg && <div className="err-msg">{errMsg}</div>}
                         <div className="modal-footer">
                             <Button
                                 color="primary"
-                                onClick={() => {
-                                    addHandleSubmit();
-                                    addnotify('success');
-                                    setAddModal(false);
-                                }}>
+                                disabled={wait}
+                                >
                                 Save
                             </Button>
                             <Button
@@ -490,7 +504,7 @@ function UsersSetup() {
                                 Cancel
                             </Button>
                         </div>
-                    </Form>
+                    </form>
                 </div>
             </Modal>
             {/* END - adding new data  */}

@@ -22,8 +22,6 @@ import VisualForeignTrade from 'views/pages/data_visualization/foreign_trade';
 import VisualEmployment from 'views/pages/data_visualization/employment';
 import VisualProduction from 'views/pages/data_visualization/production';
 import VisualTourism from 'views/pages/data_visualization/tourism';
-import AddIndicator from 'views/pages/data_management/add_indicator';
-import ImportDataset from 'views/pages/data_management/import_dataset';
 import UsersSetup from 'views/pages/user_management/users';
 
 const routes = [
