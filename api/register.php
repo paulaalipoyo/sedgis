@@ -30,12 +30,14 @@ elseif (
     !isset($data->name)
     || !isset($data->email)
     || !isset($data->password)
+    || !isset($data->type)
     || empty(trim($data->name))
     || empty(trim($data->email))
     || empty(trim($data->password))
+    || empty(trim($data->type))
 ) :
 
-    $fields = ['fields' => ['name', 'email', 'password']];
+    $fields = ['fields' => ['name', 'email', 'password','type']];
     $returnData = msg(0, 422, 'Please Fill in all Required Fields!', $fields);
 
 // IF THERE ARE NO EMPTY FIELDS THEN-
@@ -44,6 +46,7 @@ else :
     $name = trim($data->name);
     $email = trim($data->email);
     $password = trim($data->password);
+    $type = trim($data->type);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) :
         $returnData = msg(0, 422, 'Invalid Email Address!');
 
@@ -65,7 +68,7 @@ else :
                 $returnData = msg(0, 422, 'This E-mail already in use!');
 
             else :
-                $insert_query = "INSERT INTO `users`(`name`,`email`,`password`) VALUES(:name,:email,:password)";
+                $insert_query = "INSERT INTO `users`(`name`,`email`,`password`,`type`) VALUES(:name,:email,:password,:type)";
 
                 $insert_stmt = $conn->prepare($insert_query);
 
@@ -73,7 +76,7 @@ else :
                 $insert_stmt->bindValue(':name', htmlspecialchars(strip_tags($name)), PDO::PARAM_STR);
                 $insert_stmt->bindValue(':email', $email, PDO::PARAM_STR);
                 $insert_stmt->bindValue(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
-
+                $insert_stmt->bindValue(':type', htmlspecialchars(strip_tags($type)), PDO::PARAM_STR);
                 $insert_stmt->execute();
 
                 $returnData = msg(1, 201, 'You have successfully registered.');

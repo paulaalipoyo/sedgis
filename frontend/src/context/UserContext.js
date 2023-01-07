@@ -14,11 +14,12 @@ export const UserContextProvider = ({ children }) => {
     const [theUser, setUser] = useState(null);
     const [wait, setWait] = useState(false);
 
-    const registerUser = async ({ name, email, password }) => {
+    const registerUser = async ({ name, type, email, password }) => {
         setWait(true);
         try {
             const { data } = await Axios.post('register.php', {
                 name,
+                type,
                 email,
                 password
             });
