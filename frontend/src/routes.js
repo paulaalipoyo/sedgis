@@ -225,7 +225,7 @@ const routes = [
             }
         ]
     },*/
-    {
+    /*{
         collapse: true,
         name: 'User Management',
         icon: 'ni ni-badge text-info',
@@ -239,7 +239,7 @@ const routes = [
                 layout: '/admin'
             }
         ]
-    },
+    },*/
     {
         path: '/login',
         component: Login,
