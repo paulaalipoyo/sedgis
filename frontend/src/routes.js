@@ -117,7 +117,7 @@ const routes = [
                 layout: '/admin'
             }
         ]
-    },
+    },/*
     {
         collapse: true,
         name: 'Reports',
@@ -202,7 +202,7 @@ const routes = [
                 layout: '/admin'
             }
         ]
-    },
+    },*/
     /*{
         collapse: true,
         name: 'Data Management',
@@ -225,7 +225,7 @@ const routes = [
             }
         ]
     },*/
-    {
+    /*{
         collapse: true,
         name: 'User Management',
         icon: 'ni ni-badge text-info',
@@ -239,7 +239,7 @@ const routes = [
                 layout: '/admin'
             }
         ]
-    },
+    },*/
     {
         path: '/login',
         component: Login,
