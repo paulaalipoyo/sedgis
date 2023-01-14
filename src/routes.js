@@ -23,6 +23,7 @@ import VisualEmployment from 'views/pages/data_visualization/employment';
 import VisualProduction from 'views/pages/data_visualization/production';
 import VisualTourism from 'views/pages/data_visualization/tourism';
 import UsersSetup from 'views/pages/user_management/users';
+import CustomIndicatorDashboard from 'views/pages/custom_indicator';
 
 const routes = [
     {
@@ -119,6 +120,14 @@ const routes = [
         ]
     },
     {
+        path: '/custom-indicator-dashboard',
+        name: 'Custom Report',
+        icon: 'ni ni-align-left-2 text-yellow',
+        miniName: 'CID',
+        component: CustomIndicatorDashboard,
+        layout: '/admin'
+    },
+    {
         collapse: true,
         name: 'Reports',
         icon: 'ni ni-align-left-2 text-default',
@@ -203,28 +212,6 @@ const routes = [
             }
         ]
     },
-    /*{
-        collapse: true,
-        name: 'Data Management',
-        icon: 'ni ni-ui-04 text-info',
-        state: 'dataCollapse',
-        views: [
-            {
-                path: '/add-indicator',
-                name: 'Add Indicator',
-                miniName: 'AI',
-                component: AddIndicator,
-                layout: '/admin'
-            },
-            {
-                path: '/import-dataset',
-                name: 'Import Data Set',
-                miniName: 'IDS',
-                component: ImportDataset,
-                layout: '/admin'
-            }
-        ]
-    },*/
     {
         collapse: true,
         name: 'User Management',
