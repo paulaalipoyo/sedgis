@@ -4,9 +4,12 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: *");
 
-include 'DbConnect.php';
-$objDb = new DbConnect;
-$conn = $objDb->connect();
+require __DIR__.'/classes/Database.php';
+require __DIR__.'/classes/JwtHandler.php';
+
+$db_connection = new Database();
+$conn = $db_connection->dbConnection();
+
 
 $method = $_SERVER['REQUEST_METHOD'];
 switch ($method){
