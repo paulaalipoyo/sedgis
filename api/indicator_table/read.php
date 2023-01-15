@@ -2,12 +2,13 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-include_once '../DbConnect.php';
+include_once '../classes/Database.php';
 include_once '../models/IndicatorTable.php';
 include_once '../models/ColumnOptions.php';
 
-$database = new DbConnect();
-$db = $database->connect();
+$dbconnection = new Database();
+$db = $dbconnection->dbConnection();
+
 class ReadHandler
 {
     private $indicatorTableModel;
